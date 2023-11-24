@@ -41,6 +41,7 @@ class SplashActivity : ComponentActivity() {
                 Toast.makeText(this, "권한을 허용해주세요.", Toast.LENGTH_SHORT).show()
                 finish()
             }
+            startMainActivity()
         }
     }
 
@@ -51,25 +52,10 @@ class SplashActivity : ComponentActivity() {
         return grantedPermissions.size == permissions.size
     }
 
-    private fun requestPermissions(permissions: Array<String>) {
-        ActivityCompat.requestPermissions(this, permissions, PERMISSION_REQUEST_CODE)
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                // 모든 권한이 허용됨
-                LogUtil.d("모든 권한이 허용됨")
-            } else {
-                // 권한이 거부됨
-                LogUtil.d("권한이 거부됨")
-            }
-        }
+    private fun startMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java).apply {
+            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        })
     }
 
     companion object {
