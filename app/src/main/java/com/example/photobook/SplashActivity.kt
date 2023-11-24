@@ -1,10 +1,12 @@
 package com.example.photobook
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.core.app.ActivityCompat
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.photobook.utils.LogUtil
 
@@ -18,11 +20,28 @@ class SplashActivity : ComponentActivity() {
         )
 
         if (checkPermissions(permissions)) {
+            startMainActivity()
             LogUtil.d("권한이 이미 부여됨")
         } else {
-            requestPermissions(permissions)
+            requestPermissions.launch(permissionList)
         }
 
+    }
+
+    private val permissionList = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
+    private val requestPermissions = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()) {
+        for (entry in it) {
+            LogUtil.d("permission: $entry")
+            if (!entry.value) {
+                Toast.makeText(this, "권한을 허용해주세요.", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }
     }
 
     private fun checkPermissions(permissions: Array<String>): Boolean {
