@@ -3,6 +3,7 @@ buildscript {
         compose_ui_version = '1.2.0'
         w3w_version = "3.1.11"
         hilt_version = "2.44"
+        nav_version = "2.5.3"
     }
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
