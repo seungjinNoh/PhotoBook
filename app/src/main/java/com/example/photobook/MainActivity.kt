@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         LogUtil.d("MainActivity onCreate()")
         setContent {
-
+            PhotoBookApp()
         }
     }
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PhotoBook</string>
+
+    <string name="title_main_home">home</string>
+    <string name="title_main_map">map</string>
+    <string name="title_main_setting">setting</string>
 </resources>
