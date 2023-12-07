@@ -1,5 +1,6 @@
 package com.example.photobook
 
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -45,4 +46,5 @@ private fun NavGraphBuilder.photoBookNavGraph(
     ) { backStackEntry ->
 
     }
+
 }
