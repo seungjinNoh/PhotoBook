@@ -11,14 +11,15 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.photobook.R
 
-enum class MainSection(
+sealed class MainSection(
     @StringRes val title: Int,
     val icon: ImageVector,
     val route: String
 ) {
-    HOME(R.string.title_main_home, Icons.Outlined.Home, "main/home"),
-    MAP(R.string.title_main_map, Icons.Outlined.Email, "main/map"),
-    SETTING(R.string.title_main_setting, Icons.Outlined.Settings, "main/map")
+    //todo title, icon input으로 세팅
+    object HOME : MainSection(R.string.title_main_home, Icons.Outlined.Home, "main/home")
+    object MAP : MainSection(R.string.title_main_map, Icons.Outlined.Email, "main/map")
+    object SETTING : MainSection(R.string.title_main_setting, Icons.Outlined.Settings, "main/setting")
 }
 
 fun NavGraphBuilder.addMainGraph(
