@@ -1,8 +1,10 @@
 package com.example.photobook.ui.main
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -18,40 +20,42 @@ fun Home(
     onNavigateToRoute: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colors.primary)
+    Column(
+        modifier = Modifier.fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = "Home Screen",
-            modifier = Modifier.align(Alignment.Center)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-    }
-    
-    BottomNavigation(
-    ) {
-        val sections = listOf(MainSection.HOME, MainSection.MAP, MainSection.SETTING)
 
-        sections.forEach { section ->
-            BottomNavigationItem(
-                selected = false,
-                onClick = { },
-                icon = {
-                    Icon(
-                        imageVector = section.icon,
-                        contentDescription = null
-                    )
-                },
-                label = {
-                    Text(
-                        text = stringResource(id = section.title),
-                        style = MaterialTheme.typography.caption
-                    )
-                }
-            )
+        BottomNavigation(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.CenterHorizontally)
+        ) {
+            val sections = listOf(MainSection.HOME, MainSection.MAP, MainSection.SETTING)
+
+            sections.forEach { section ->
+                BottomNavigationItem(
+                    selected = false,
+                    onClick = { onNavigateToRoute(section.route) },
+                    icon = {
+                        Icon(
+                            imageVector = section.icon,
+                            contentDescription = null
+                        )
+                    },
+                    label = {
+                        Text(
+                            text = stringResource(id = section.title),
+                            style = MaterialTheme.typography.caption
+                        )
+                    }
+                )
+            }
         }
+
     }
 
 }
