@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -18,7 +19,8 @@ import androidx.compose.ui.res.stringResource
 @Composable
 fun Home(
     onNavigateToRoute: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEditClick: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxHeight(),
@@ -26,8 +28,11 @@ fun Home(
     ) {
         Text(
             text = "Home Screen",
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         )
+
+        Button(onClick = onEditClick) {
+        }
 
         BottomNavigation(
             modifier = Modifier

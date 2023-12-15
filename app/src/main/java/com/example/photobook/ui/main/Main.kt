@@ -7,6 +7,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.photobook.R
@@ -24,10 +25,11 @@ sealed class MainSection(
 
 fun NavGraphBuilder.addMainGraph(
     onNavigateToRoute: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEditSelected: (NavBackStackEntry) -> Unit
 ) {
     composable(MainSection.HOME.route) { from ->
-        Home(onNavigateToRoute = onNavigateToRoute, modifier = modifier)
+        Home(onNavigateToRoute = onNavigateToRoute, modifier = modifier, onEditClick = { onEditSelected(from) })
     }
     composable(MainSection.MAP.route) { from ->
         Map(onNavigateToRoute = onNavigateToRoute, modifier = modifier)

@@ -3,6 +3,8 @@ package com.example.photobook.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
@@ -11,7 +13,8 @@ import androidx.navigation.compose.rememberNavController
 object MainScreen {
     const val MAIN = "main"
     const val DETAIL = "detail"
-    const val DETAIL_ID_KEY = "detailId"
+    const val EDIT = "edit"
+    const val EDIT_ID_KEY = "detailId"
 }
 
 @Composable
@@ -43,7 +46,16 @@ class PhotoBookNavController(
             }
         }
     }
+
+    fun navigateToEdit(from: NavBackStackEntry) {
+        if (from.lifecycleIsResumed()) {
+            navController.navigate(MainScreen.EDIT)
+        }
+    }
 }
+
+private fun NavBackStackEntry.lifecycleIsResumed() =
+    this.lifecycle.currentState == Lifecycle.State.RESUMED
 
 private val NavGraph.startDestination: NavDestination?
     get() = findNode(startDestinationId)

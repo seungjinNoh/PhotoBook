@@ -2,12 +2,14 @@ package com.example.photobook
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.example.photobook.ui.edit.Edit
 import com.example.photobook.ui.navigation.MainScreen
 import com.example.photobook.ui.navigation.rememberPhotoBookNavController
 import com.example.photobook.ui.main.MainSection
@@ -24,7 +26,8 @@ fun PhotoBookApp() {
         ) {
             photoBookNavGraph(
                 upPress = photoBookNavController::upPress,
-                onNavigateToRoute = photoBookNavController::navigateToBottomBarRoute
+                onNavigateToRoute = photoBookNavController::navigateToBottomBarRoute,
+                onEditSelected = photoBookNavController::navigateToEdit
             )
         }
     }
@@ -32,19 +35,22 @@ fun PhotoBookApp() {
 
 private fun NavGraphBuilder.photoBookNavGraph(
     upPress: () -> Unit,
-    onNavigateToRoute: (String) -> Unit
+    onNavigateToRoute: (String) -> Unit,
+    onEditSelected: (NavBackStackEntry) -> Unit
 ) {
     navigation(
         route = MainScreen.MAIN,
         startDestination = MainSection.HOME.route
     ) {
-        addMainGraph(onNavigateToRoute = onNavigateToRoute)
+        addMainGraph(
+            onNavigateToRoute = onNavigateToRoute,
+            onEditSelected = onEditSelected
+        )
     }
     composable(
-        route = "${MainScreen.MAIN}/{${MainScreen.DETAIL_ID_KEY}}",
-        arguments = listOf(navArgument(MainScreen.DETAIL_ID_KEY) { type = NavType.LongType })
+        route = MainScreen.EDIT
     ) { backStackEntry ->
-
+        Edit(upPress)
     }
 
 }
