@@ -57,6 +57,7 @@ class PhotoBookNavController(
 private fun NavBackStackEntry.lifecycleIsResumed() =
     this.lifecycle.currentState == Lifecycle.State.RESUMED
 
+
 private val NavGraph.startDestination: NavDestination?
     get() = findNode(startDestinationId)
 
