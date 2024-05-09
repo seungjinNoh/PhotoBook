@@ -34,7 +34,8 @@ import com.example.photobook.utils.LogUtil
 
 @Composable
 fun Edit(
-    upPress: () -> Unit
+    upPress: () -> Unit,
+    photoId: String = ""
 ) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Text(text = "Edit Screen")
@@ -71,7 +72,7 @@ fun ChoosePhoto() {
         horizontalArrangement = Arrangement.Start
     ) {
 
-
+        //이미지 선택 버튼
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = null,
@@ -94,6 +95,7 @@ fun ChoosePhoto() {
                 .size(100.dp)
         )
 
+        //이미지 보여지는 화면
         AsyncImage(
             model = selectedImageUri.value,
             contentDescription = null,
