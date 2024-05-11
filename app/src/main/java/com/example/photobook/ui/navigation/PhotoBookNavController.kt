@@ -15,6 +15,8 @@ object MainScreen {
     const val DETAIL = "detail"
     const val EDIT = "edit"
     const val EDIT_ID_KEY = "detailId"
+
+    const val PHOTO_ID = "photoId"
 }
 
 @Composable
@@ -49,7 +51,9 @@ class PhotoBookNavController(
 
     fun navigateToEdit(from: NavBackStackEntry) {
         if (from.lifecycleIsResumed()) {
-            navController.navigate(MainScreen.EDIT)
+            //todo navigation 구조 변경 후 수정 예정
+            val test = "test"
+            navController.navigate("${MainScreen.EDIT}/$test")
         }
     }
 }

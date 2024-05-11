@@ -48,9 +48,11 @@ private fun NavGraphBuilder.photoBookNavGraph(
         )
     }
     composable(
-        route = MainScreen.EDIT
+        route = "${MainScreen.EDIT}/{${MainScreen.PHOTO_ID}}",
+        arguments = listOf(navArgument(MainScreen.PHOTO_ID) { type = NavType.StringType })
     ) { backStackEntry ->
-        Edit(upPress)
+        val photoId = backStackEntry.arguments?.getString(MainScreen.PHOTO_ID) ?: ""
+        Edit(upPress = upPress, photoId = photoId)
     }
 
 }
