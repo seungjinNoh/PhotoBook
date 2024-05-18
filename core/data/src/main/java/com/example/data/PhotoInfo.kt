@@ -1,4 +1,4 @@
-package com.example.data1
+package com.example.data
 
 data class PhotoInfo(
     val id: Long,
