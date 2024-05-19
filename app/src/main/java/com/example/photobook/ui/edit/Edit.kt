@@ -37,6 +37,15 @@ fun Edit(
     upPress: () -> Unit,
     photoId: String = ""
 ) {
+
+    /**
+     *  todo photoId로 DB의 값을 읽어오는 로직
+     *  각각의 변수 상위 컴포저블에서 state 변수로 선언하기
+     *  있으면 DB에서 데이터 읽어서 보여주기
+     *  없으면 빈 화면으로 보여주기
+     */
+
+
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Text(text = "Edit Screen")
         Spacer(modifier = Modifier.height(16.dp))
