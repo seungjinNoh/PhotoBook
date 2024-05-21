@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PhotoBook"
 include ':app'
-include 'core:domain'
+include ':core:domain'
 include ':core:data'
