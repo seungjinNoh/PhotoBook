@@ -1,15 +1,15 @@
 package com.example.data.mapper
 
-import com.example.data.PhotoInfo
-import com.example.domain.entity.PhotoEntity
+import com.example.data.PhotoEntity
+import com.example.domain.model.Photo
 
 object PhotoMapper {
-    fun toEntity(photoInfo: PhotoInfo): PhotoEntity {
+    fun toEntity(photo: Photo): PhotoEntity {
         return PhotoEntity(
-            id = photoInfo.id,
-            path = photoInfo.path,
-            title = photoInfo.title,
-            w3w = photoInfo.w3w
+            id = photo.id,
+            path = photo.path,
+            title = photo.title,
+            w3w = photo.w3w
         )
     }
 

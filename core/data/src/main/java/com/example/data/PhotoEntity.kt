@@ -1,4 +1,4 @@
-package com.example.domain.entity
+package com.example.data
 
 data class PhotoEntity(
     val id: Long,
