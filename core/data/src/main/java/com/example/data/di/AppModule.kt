@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.example.data.database.PhotoDao
 import com.example.data.database.PhotoDatabase
+import com.example.data.repository.PhotoRepositoryImpl
+import com.example.domain.repository.PhotoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +31,11 @@ object AppModule {
     @Provides
     fun providePhotoDao(database: PhotoDatabase): PhotoDao {
         return database.photoDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepository(photoDao: PhotoDao): PhotoRepository {
+        return PhotoRepositoryImpl(photoDao)
     }
 }
