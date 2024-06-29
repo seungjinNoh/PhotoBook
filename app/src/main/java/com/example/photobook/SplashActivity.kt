@@ -9,6 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.photobook.utils.LogUtil
+import dagger.hilt.android.AndroidEntryPoint
 
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

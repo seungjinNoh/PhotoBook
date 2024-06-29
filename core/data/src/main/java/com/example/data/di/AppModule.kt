@@ -22,7 +22,7 @@ object AppModule {
     @Singleton
     fun providePhotoDatabase(@ApplicationContext context: Context): PhotoDatabase {
         return Room.databaseBuilder(
-            context,
+            context.applicationContext,
             PhotoDatabase::class.java,
             "photo_database"
         ).build()

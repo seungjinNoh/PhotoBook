@@ -23,7 +23,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.photobook.viewmodel.EditViewModel
-import com.example.photobook.viewmodel.PhotoViewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,11 +33,13 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.drawable.toBitmap
-import com.example.photobook.R
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.domain.model.Photo
+import dagger.hilt.android.AndroidEntryPoint
+
 
 @Composable
-fun AddPhoto(viewModel: EditViewModel = viewModel()) {
+fun AddPhoto(viewModel: EditViewModel = hiltViewModel()) {
 
     val title by viewModel.title.collectAsState()
     val photoUri by viewModel.photoUri.collectAsState()
@@ -55,7 +56,12 @@ fun AddPhoto(viewModel: EditViewModel = viewModel()) {
             PhotoPicker(photoUri = photoUri, onPhotoSelected = { viewModel.updatePhoto(it) })
         }
         Button(
-            onClick = { viewModel.savePhoto() },
+            onClick = { viewModel.savePhoto(
+                Photo(path = photoUri.toString(),
+                    title = title,
+                    id = 1,
+                    w3w = "asd")
+            ) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)

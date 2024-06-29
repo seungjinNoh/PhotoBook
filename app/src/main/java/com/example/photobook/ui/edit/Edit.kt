@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,12 +32,19 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.photobook.R
 import com.example.photobook.utils.LogUtil
+import com.example.photobook.viewmodel.EditViewModel
 
 @Composable
 fun Edit(
     upPress: () -> Unit,
     photoId: String = ""
 ) {
+
+    /**
+     * todo
+     * 함수 자체를 2개 만든다(추가, 수정)
+     * 그리고 각 컴포넌트마다 함수로 뺀다(제목입력, 지도 선택, 등등)
+     */
 
     /**
      *  todo photoId로 DB의 값을 읽어오는 로직
@@ -56,6 +64,19 @@ fun Edit(
 
 }
 
+
+
+//@Composable
+//fun TitleInput(title: String, onTitleChange: (String) -> Unit) {
+//    BasicTextField(
+//        value = title,
+//        onValueChange = onTitleChange,
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(8.dp)
+//    )
+//}
+
 @Composable
 fun Photo() {
     Text(text = "Photo")
@@ -69,6 +90,7 @@ fun ChoosePhoto() {
     val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { uri ->
+            LogUtil.d("uri: $uri")
             selectedImageUri.value = uri
         }
     )
@@ -86,7 +108,8 @@ fun ChoosePhoto() {
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = null,
             modifier = Modifier
-                .size(100.dp).clickable {
+                .size(100.dp)
+                .clickable {
                     singlePhotoPickerLauncher.launch(
                         PickVisualMediaRequest(
                             ActivityResultContracts.PickVisualMedia.ImageOnly

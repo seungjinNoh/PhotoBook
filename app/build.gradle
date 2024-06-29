@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -71,6 +71,7 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     implementation("io.coil-kt:coil-compose:2.4.0")
@@ -79,6 +80,6 @@ dependencies {
     implementation project(':core:data')
 }
 
-//kapt {
-//    correctErrorTypes = true
-//}
+kapt {
+    correctErrorTypes = true
+}
