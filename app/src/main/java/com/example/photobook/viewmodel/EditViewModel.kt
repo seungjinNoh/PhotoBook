@@ -1,13 +1,14 @@
 package com.example.photobook.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.data.PhotoEntity
-import com.example.data.mapper.PhotoMapper
+import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Photo
 import com.example.domain.repository.PhotoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,12 +32,9 @@ class EditViewModel @Inject constructor(
     }
 
     fun savePhoto(photo: Photo) {
-        //todo 저장 로직 작성
-        photoRepository.addPhoto(
-            photo = photo
-        )
+        viewModelScope.launch(Dispatchers.IO) {
+            photoRepository.addPhoto(photo)
+        }
     }
-
-
 
 }
